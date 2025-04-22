@@ -6,9 +6,11 @@ from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_community.document_loaders import PyPDFLoader
 from langchain.schema import Document
 import os
+from dotenv import load_dotenv
+load_dotenv()
 
 # Initialize embeddings
-embeddings = OpenAIEmbeddings()
+embeddings = OpenAIEmbeddings(api_key=os.getenv('OPENAI_API_KEY'))
 STORE_PATH = "faiss_store"
 
 def process_pdf(file_path: str) -> list[Document]:
